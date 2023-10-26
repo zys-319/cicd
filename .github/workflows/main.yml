@@ -31,7 +31,6 @@ jobs:
      severity: 'High'
      
 #step 3
-
     -name: Slack fail Notification
      uses: rtCamp/action-slack-notify@v2
      env:
