@@ -44,7 +44,7 @@ jobs:
 
       - uses: MeilCli/slack-upload-file@v3
         with:
-          slack_token: ${{secrets.WEBOOKTOKEN}}
+          slack_token: ${{secrets.WEBOOKTESTTOKEN}}
           channel_id: ${{secrets.CHANNELID}}
           content: 'file content'
           file_type: 'text'
