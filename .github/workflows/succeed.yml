@@ -31,25 +31,29 @@ jobs:
       
 
       # 4
-      - name: Build and push Docker images
-     
-      - name: Set up Docker Buildx
-      - uses: docker/setup-buildx-action@v3
       
-      - name: Login to Docker Hub
-      - uses: docker/login-action@v3
+     
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
         with:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.DOCKERTOKEN }}
       
-      - name: Build and push
-      - uses: docker/build-push-action@v5
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
         with:
           push: true
           tags: zys-319/cicd:${{github.sha}}
       
-      - name: install cosign
-      - uses: sigstore/cosign-installer@v3.1.1
+      -
+        name: install cosign
+        uses: sigstore/cosign-installer@v3.1.1
         with:
           cosign-release: 'v2.2.0'
       
@@ -62,24 +66,24 @@ jobs:
           COSIGN_PASSWORD: ${{ secrets.COSIGNPASSWORD }}
 
       # 
-      - name: Slack Notification
+      
       - uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_CHANNEL: general
           SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: 'Name: ZOUYISONG\nMatriculation: A0286053A\nEmail:<e1285206@u.nus.edu>\n<https://github.com/zys-319/cicd.git>\nDocker:'
+          SLACK_MESSAGE: 'Name: ZOUYISONG\nMatriculation: A0286053A\nEmail:<e1285206@u.nus.edu>\n<https://github.com/zys-319/cicd.git>\nDocker:https://hub.docker.com'
           SLACK_TITLE: Information
           SLACK_USERNAME: CICD
           SLACK_WEBHOOK: ${{ secrets.SLACKLINK }}
 
-      - name: upload
+      
       - uses: MeilCli/slack-upload-file@v3
         with:
           slack_token: ${{secrets.WEBOOKTESTTOKEN}}
           channel_id: ${{secrets.CHANNELID}}
           content: 'file content'
-          file_type: 'text'
+          file_type: 'txt'
           file_name: 'trivy-result.txt'
           title: 'title of file'
           initial_comment: 'post by ZOU YISONG'
