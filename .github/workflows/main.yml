@@ -1,55 +1,56 @@
-name: zys
+name: first
+
 on:
- push:
-  branches:
-   -v.[0-9][0-9]
-   -main
- pull:
-  branches:
-   -main
+  
+  push:
+    branches: 
+      - 'HIGH'
+    tags:
+      - 'v[0-9].[0-9]'
+  pull_request:
+    branches: [ "HIGH" ]
 
 jobs:
- zys:
-  #if:${{!startsWith(github.event.head_commit.message,"#NORUN")}}
-  name: zys
-  runs-on: ubuntu-20.04
-  steps:
-   -name: Checkout code
-   uses: actions/checkout@v4
+  build:
+    #if: ${{ !startwith(commit,#NORUN)}}
+    runs-on: ubuntu-latest
+    steps:
+      # 2
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-#step 2
-   
-   -name: Run Trivy vulnerability scanner in repo mode
-    uses: aquasecurity/trivy-action@master
-    id: trivy
-    continue-on-error: true
-    with:
-     scan-type: 'fs'
-     ignore-unfixed: true
-     format: 'table'
-     output: 'trivy-results.txt'
-     severity: 'High'
-     
-    -name: Slack fail Notification
-     uses: rtCamp/action-slack-notify@v2
-     env:
-      SLACK_CHANNEL: general
-      SLACK_COLOR: {'#ff00ff'} # or a specific color like 'good' or '#ff00ff'
-      SLACK_ICON: https://github.com/rtCamp.png?size=48
-      SLACK_ MESSAGE: 'Failed trivy scan,see uploaded report'
-      SLACK_TITLE: Scan failed-ZYS
-      SLACK_USERNAME: CICD
-      SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          output: 'HIGH.table'
+          severity: 'HIGH'
 
-     -uses: MeilCli/slack-upload-file@v3
-        with:
-          slack_token: ${{ xoxb-5065523607364-6032237051040-m5CzjzNYhE0cSKkUAawaEdUQ }}
-          channel_id: ${{ devops }}
-          content: 'file content'
-          file_type: 'text'
-          file_name: 'trivy-results.txt'
-          title: 'title of file'
-          initial_comment: 'post by zouyisong'
+        
+      # 3
+      - name: Slack failed Notification
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_CHANNEL: devops
+          SLACK_COLOR: '#ff00ff' # or a specific color like 'good' or '#ff00ff'
+          SLACK_ICON: https://github.com/rtCamp.png?size=48
+          SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
+          SLACK_TITLE: Scan failed - ZOU YISONG
+          SLACK_USERNAME: CICD
+          SLACK_WEBHOOK: ${{ secrets.WEBHOOK_TEST }}
+
+      - uses: MeilCli/slack-upload-file@v3
+        with:
+          slack_token: ${{secrets.WEBOOKTOKEN}}
+          channel_id: ${{secrets.CHANNELID}}
+          content: 'file content'
+          file_type: 'text'
+          file_name: 'trivy-result.txt'
+          title: 'title of file'
+          initial_comment: 'post by ZOU YISONG'
 
    
      
