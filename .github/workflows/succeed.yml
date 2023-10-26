@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: yisong0319/cicd:${{github.sha}}
+          tags: zys-319/cicd:${{github.sha}}
       
       -
         name: install cosign
@@ -61,7 +61,7 @@ jobs:
         run: |
           cosign sign --yes --key env://COSIGN_PRIVATE_KEY "${TAGS}"
         env:
-          TAGS: 'zys-319/cicd'
+          TAGS: 'zys-319/cicd:${{github.sha}}'
           COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
           COSIGN_PASSWORD: ${{ secrets.COSIGNPASSWORD }}
 
