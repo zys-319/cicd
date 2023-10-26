@@ -49,7 +49,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: zys-319/cicd:${{github.sha}}
+          tags: yisong0319/cicd:${{github.sha}}
       
       -
         name: install cosign
