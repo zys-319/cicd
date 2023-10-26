@@ -42,7 +42,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.DOCKERPASSWORD }}
+          password: ${{ secrets.DOCKERPTOKEN }}
       
       -
         name: Build and push
