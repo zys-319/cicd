@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    #if: ${{ !startwith(commit,#NORUN)}}
+    if: startsWith(${{ github.event.inputs.from-branch}},'#NOURUN') != true
     runs-on: ubuntu-latest
     steps:
       # 2
@@ -34,7 +34,7 @@ jobs:
       - name: Slack failed Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          #SLACK_CHANNEL: submission
+          SLACK_CHANNEL: devops
           SLACK_COLOR: '#ff00ff' # or a specific color like 'good' or '#ff00ff'
           #SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: "Failed trivy scan, see uploaded report"
