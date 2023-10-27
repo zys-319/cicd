@@ -15,7 +15,7 @@ jobs:
     if: startsWith(${{ github.event.inputs.from-branch}},'#NOURUN') != true
     runs-on: ubuntu-latest
     steps:
-      # 2
+      
       
       - name: Checkout code
         uses: actions/checkout@v3
@@ -30,7 +30,7 @@ jobs:
           severity: 'HIGH'
 
         
-      # 3
+      
       - name: Slack failed Notification
         uses: rtCamp/action-slack-notify@v2
         env:
