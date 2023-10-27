@@ -1,4 +1,4 @@
-name: build
+name: build-CRITICAL
 
 on:
   
@@ -6,13 +6,13 @@ on:
     branches: 
       - 'succeed'
     tags:
-      - 'v*'
+      - 'v[0-9].[0-9]'
   pull_request:
     branches: [ "succeed" ]
 
 jobs:
   build:
-    #if: ${{ !startwith(commit,#NORUN)}}
+    if: startsWith(${{ github.event.inputs.from-branch}},'#NOURUN') != true
     runs-on: ubuntu-latest
     steps:
       # 2
@@ -69,17 +69,17 @@ jobs:
       
       - uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: general
+          SLACK_CHANNEL: devops
           SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: |
             Name: ZOU YISONG
             Email: e1285206@u.nus.edu
             Git: <https://github.com/zys-319/cicd>
-            Image: <https://hub.docker.com/repository/docker/yisong0319/cicd>
+            Docker: <https://hub.docker.com/repository/docker/yisong0319/cicd>
           SLACK_TITLE: Image build and signed
-          SLACK_USERNAME: CICD
-          SLACK_WEBHOOK: ${{secrets.WEBHOOK}}
+          SLACK_USERNAME: DipSA 57 CICD
+          SLACK_WEBHOOK: ${{secrets.}}
 
       
       - uses: MeilCli/slack-upload-file@v3
