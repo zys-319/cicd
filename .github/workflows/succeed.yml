@@ -79,13 +79,13 @@ jobs:
             Docker: <https://hub.docker.com/repository/docker/yisong0319/cicd>
           SLACK_TITLE: Image build and signed
           SLACK_USERNAME: DipSA 57 CICD
-          SLACK_WEBHOOK: ${{secrets.}}
+          SLACK_WEBHOOK: ${{secrets.WEBHOOK_TEST}}
 
       
       - uses: MeilCli/slack-upload-file@v3
         with:
           slack_token: ${{secrets.WEBOOKTESTTOKEN}}
-          channel_id: ${{secrets.CHANNELID}}
+          channel_id: ${{secrets.CHANNEL_TEST_ID}}
           content: 'file content'
           file_type: 'txt'
           file_name: 'trivy-result.txt'
