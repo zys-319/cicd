@@ -72,7 +72,11 @@ jobs:
           #SLACK_CHANNEL: general
           SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
           #SLACK_ICON: https://github.com/rtCamp.png?size=48
-          SLACK_MESSAGE: F
+          SLACK_MESSAGE: |
+            Name: ZOU YISONG
+            Email: e1285206@u.nus.edu
+            Git: <https://github.com/zys-319/cicd>
+            Image: <https://hub.docker.com/repository/docker/yisong0319/cicd>
           SLACK_TITLE: Image build and signed
           #SLACK_USERNAME: CICD
           SLACK_WEBHOOK: ${{ secrets.SLACKLINK }}
