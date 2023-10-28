@@ -79,7 +79,7 @@ jobs:
             Docker: <https://hub.docker.com/repository/docker/yisong0319/cicd>
           SLACK_TITLE: Image build and signed
           SLACK_USERNAME: DipSA 57 CICD
-          SLACK_WEBHOOK: ${{secrets.WEBHOOK_SUBMIT_NEW}}
+          SLACK_WEBHOOK: ${{secrets.WEBHOOK_TEST}}
 
       
       - uses: MeilCli/slack-upload-file@v3
