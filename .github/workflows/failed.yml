@@ -39,7 +39,7 @@ jobs:
           SLACK_COLOR: 'red' # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
-          SLACK_TITLE: Scan failed - LIU BAO
+          SLACK_TITLE: Scan failed - Zou Yi Song
           SLACK_USERNAME: DipSA 57 CICD
           SLACK_WEBHOOK: ${{ secrets.WEBHOOK_SUMMIT }}
 
