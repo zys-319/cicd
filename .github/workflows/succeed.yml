@@ -80,10 +80,3 @@ jobs:
           SLACK_USERNAME: DipSA 57 CICD
           SLACK_WEBHOOK: ${{secrets.WEBHOOK_SUBMIT_NEW}}
 
-      
-      - uses: MeilCli/slack-upload-file@v3
-        with:
-          slack_token: ${{secrets.WEBHOOK_SUBMIT_TOKEN}}
-          channel_id: ${{secrets.CHANNEL_SUBMIT_ID}}
-          file_path: 'trivy-result.txt'
-          initial_comment: 'post by ZOU YISONG'
