@@ -66,6 +66,7 @@ jobs:
       # 
       
       - uses: rtCamp/action-slack-notify@v2
+        continue-on-error: true
         env:
           SLACK_CHANNEL: submission
           SLACK_COLOR: 'good' # or a specific color like 'good' or '#ff00ff'
