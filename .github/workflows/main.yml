@@ -12,7 +12,7 @@ on:
 
 jobs:
   build:
-    if: startsWith(${{ github.event.inputs.from-branch}},'#NOURUN') != true
+    if:  ${{ !startsWith(github.event.head_commit.message, '#NORUN') }}
     runs-on: ubuntu-latest
     steps:
       # 2
@@ -33,6 +33,7 @@ jobs:
       # 3
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
+        continue-on-error: true
         env:
           SLACK_CHANNEL: submission
           SLACK_COLOR: 'red' # or a specific color like 'good' or '#ff00ff'
@@ -44,12 +45,9 @@ jobs:
 
       - uses: MeilCli/slack-upload-file@v3
         with:
-          slack_token: ${{ secrets.WEBHOOK_SUMMIT_TOKEN }}
-          channel_id: ${{ secrets.WEBHOOK_SUMMIT_ID }}
-          content: 'file content'
-          file_type: 'txt'
-          file_name: 'trivy-result.txt'
-          title: 'title of file'
+          slack_token: ${{secrets.WEBHOOK_SUBMIT_TOKEN}}
+          channel_id: ${{secrets.CHANNEL_SUBMIT_ID}}
+          file_path: 'trivy-result.txt'
           initial_comment: 'post by ZOU YISONG'
 
    
