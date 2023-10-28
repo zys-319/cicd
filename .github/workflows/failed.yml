@@ -4,11 +4,9 @@ on:
   
   push:
     branches: 
-      - 'HIGH'
+      - 'failed'
     tags:
       - 'v[0-9].[0-9]'
-  pull_request:
-    branches: [ "HIGH" ]
 
 jobs:
   build:
