@@ -24,7 +24,7 @@ jobs:
           scan-type: 'fs'
           ignore-unfixed: true
           format: 'table'
-          output: 'HIGH.table'
+          output: 'trivy-results.txt'
           severity: 'HIGH'
 
         
@@ -34,7 +34,7 @@ jobs:
         continue-on-error: true
         env:
           SLACK_CHANNEL: submission
-          SLACK_COLOR: 'red' # or a specific color like 'good' or '#ff00ff'
+          SLACK_COLOR: '#ff00ff' # or a specific color like 'good' or '#ff00ff'
           SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: 'Failed trivy scan, see uploaded report'
           SLACK_TITLE: Scan failed - Zou Yi Song
@@ -45,7 +45,7 @@ jobs:
         with:
           slack_token: ${{secrets.WEBOOKTESTTOKEN}}
           channel_id: ${{secrets.CHANNEL_TEST_ID}}
-          file_path: 'trivy-result.txt'
+          file_path: 'trivy-results.txt'
           initial_comment: 'post by ZOU YISONG'
 
    
