@@ -84,8 +84,5 @@ jobs:
         with:
           slack_token: ${{secrets.WEBOOKTESTTOKEN}}
           channel_id: ${{secrets.CHANNEL_TEST_ID}}
-          content: 'file content'
-          file_type: 'txt'
-          file_name: 'trivy-result.txt'
-          title: 'title of file'
+          file_path: 'trivy-result.txt'
           initial_comment: 'post by ZOU YISONG'
