@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    if: startsWith(${{ github.event.inputs.from-branch}},'#NOURUN') != true
+    if:  ${{ !startsWith(github.event.head_commit.message, '#NORUN') }}
     runs-on: ubuntu-latest
     steps:
       # 2
