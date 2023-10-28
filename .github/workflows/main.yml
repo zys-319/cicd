@@ -34,13 +34,13 @@ jobs:
       - name: Slack failed Notification
         uses: rtCamp/action-slack-notify@v2
         env:
-          SLACK_CHANNEL: submission
+          SLACK_CHANNEL: devops
           SLACK_COLOR: '#ff00ff' # or a specific color like 'good' or '#ff00ff'
           #SLACK_ICON: https://github.com/rtCamp.png?size=48
           SLACK_MESSAGE: "Failed trivy scan, see uploaded report"
           SLACK_TITLE: Scan failed-ZOU YISONG
-          SLACK_USERNAME: CICD
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_USERNAME: DipSA 57 CICD
+          SLACK_WEBHOOK: ${{ secrets.WEBHOOK_SUBMIT }}
 
       - uses: MeilCli/slack-upload-file@v3
         with:
